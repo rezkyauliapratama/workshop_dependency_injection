@@ -1,11 +1,10 @@
-package id.innovation.worshopdependencyinjection
+package id.innovation.worshopdependencyinjection.screens.movieslist
 
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
+import id.innovation.worshopdependencyinjection.BuildConfig
 import id.innovation.worshopdependencyinjection.networking.MoviesApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -26,16 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mDisposable: Disposable
 
+    lateinit var mViewMvc: MoviesListViewMvc
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        // init recycler view
-        rvPopularMovies.layoutManager = LinearLayoutManager(this)
-
-        mAdapter = MoviesAdapter()
-
-        rvPopularMovies.adapter = mAdapter
+        //right now, Activity doesn't know about the view , all related to view already handle by ViewMvc
+        mViewMvc = MoviesListViewMvcImpl(LayoutInflater.from(this), null)
+        setContentView((mViewMvc as MoviesListViewMvcImpl).view)
 
         //init okhttp
         val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -60,17 +57,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
+        mViewMvc.showProgressBar()
         mDisposable = mMoviesApi
             .getPopularMovies(BuildConfig.API_KEY, 1)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    if (it.totalResults > 0) mAdapter.bindData(it.moviesDto)
-                    progressBar.visibility = View.GONE
+                    if (it.totalResults > 0) mViewMvc.bindMovies(it.moviesDto)
+                    mViewMvc.hideProgressBar()
                 }, {
-                    progressBar.visibility = View.GONE
+                    mViewMvc.hideProgressBar()
                 }
             )
 
