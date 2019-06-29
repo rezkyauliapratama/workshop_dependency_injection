@@ -45,4 +45,7 @@ class App : Application() {
         return mMoviesApi!!
     }
 
+    fun getMoviesUseCase(): MoviesUseCase {
+        return MoviesUseCase(getApi())
+    }
 }

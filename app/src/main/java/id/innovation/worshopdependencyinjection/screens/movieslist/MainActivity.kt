@@ -20,9 +20,7 @@ class MainActivity : AppCompatActivity(), MoviesUseCase.Listener {
         mViewMvc = MoviesListViewMvcImpl(LayoutInflater.from(this), null)
         setContentView((mViewMvc as MoviesListViewMvcImpl).view)
 
-        val moviesApi = (application as App).getApi()
-
-        mUseCase = MoviesUseCase(moviesApi)
+        mUseCase = (application as App).getMoviesUseCase()
     }
 
 
