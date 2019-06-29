@@ -8,7 +8,7 @@ class App : Application() {
     lateinit var mCompositionRoot: CompositionRoot
 
     fun getCompositionRoot() : CompositionRoot {
-        if (::mCompositionRoot.isInitialized){
+        if (!::mCompositionRoot.isInitialized){
             mCompositionRoot = CompositionRoot()
         }
         return mCompositionRoot
