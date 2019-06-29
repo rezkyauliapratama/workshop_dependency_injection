@@ -1,5 +1,6 @@
 package id.innovation.worshopdependencyinjection.common
 
+import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
@@ -9,6 +10,8 @@ import java.util.concurrent.ConcurrentHashMap
  * @param <LISTENER_CLASS> the class of the listeners
 </LISTENER_CLASS> */
 abstract class BaseObservable<LISTENER_CLASS> {
+
+    val mDisposable: CompositeDisposable = CompositeDisposable()
 
     // thread-safe set of listeners
     private val mListeners = Collections.newSetFromMap(
@@ -28,6 +31,7 @@ abstract class BaseObservable<LISTENER_CLASS> {
 
     fun unregisterListener(listener: LISTENER_CLASS) {
         mListeners.remove(listener)
+        mDisposable.clear()
     }
 
 }
