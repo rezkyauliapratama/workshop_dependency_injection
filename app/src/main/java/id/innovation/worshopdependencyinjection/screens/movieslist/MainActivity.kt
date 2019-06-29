@@ -1,6 +1,7 @@
 package id.innovation.worshopdependencyinjection.screens.movieslist
 
 import android.os.Bundle
+import id.innovation.worshopdependencyinjection.common.dependencyinjection.Service
 import id.innovation.worshopdependencyinjection.networking.MovieDtoBean
 import id.innovation.worshopdependencyinjection.screens.common.base.BaseActivity
 import id.innovation.worshopdependencyinjection.screens.common.dialog.DialogsManager
@@ -14,8 +15,13 @@ class MainActivity : BaseActivity(), MoviesUseCase.Listener {
     lateinit var mViewMvc: MoviesListViewMvc
 
     //injected fields
+    @Service
     lateinit var mUseCase: MoviesUseCase
+
+    @Service
     lateinit var mViewMvcFactory: ViewMvcFactory
+
+    @Service
     lateinit var mDialogsManager: DialogsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
