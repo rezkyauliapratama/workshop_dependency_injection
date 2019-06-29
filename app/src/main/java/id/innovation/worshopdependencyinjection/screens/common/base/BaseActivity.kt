@@ -5,10 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import id.innovation.worshopdependencyinjection.App
 import id.innovation.worshopdependencyinjection.common.dependencyinjection.CompositionRoot
 import id.innovation.worshopdependencyinjection.common.dependencyinjection.PresentationCompositionRoot
+import id.innovation.worshopdependencyinjection.common.dependencyinjection.Injector
+
+
 
 abstract class BaseActivity: AppCompatActivity() {
 
     private lateinit var mPresentationCompositionRoot: PresentationCompositionRoot
+
+    protected fun getInjector(): Injector {
+        return Injector(getCompositionRoot())
+    }
 
     protected fun getCompositionRoot(): PresentationCompositionRoot {
         if (!::mPresentationCompositionRoot.isInitialized){
