@@ -1,31 +1,32 @@
 package id.innovation.worshopdependencyinjection.screens.movieslist
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import id.innovation.worshopdependencyinjection.networking.MovieDtoBean
 import id.innovation.worshopdependencyinjection.screens.common.base.BaseActivity
 import id.innovation.worshopdependencyinjection.screens.common.dialog.DialogsManager
 import id.innovation.worshopdependencyinjection.screens.common.dialog.ServerErrorDialogFragment
+import id.innovation.worshopdependencyinjection.screens.common.mvcviews.ViewMvcFactory
 import id.innovation.worshopdependencyinjection.usecase.MoviesUseCase
+
 
 class MainActivity : BaseActivity(), MoviesUseCase.Listener {
 
     lateinit var mViewMvc: MoviesListViewMvc
-    lateinit var mUseCase: MoviesUseCase
 
+    //injected fields
+    lateinit var mUseCase: MoviesUseCase
+    lateinit var mViewMvcFactory: ViewMvcFactory
     lateinit var mDialogsManager: DialogsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //inject !!!!
+        getInjector().inject(this)
+
         //right now, Activity doesn't know about the view , all related to view already handle by ViewMvc
-        mViewMvc = getCompositionRoot().getViewMvcFactory().newInstance(MoviesListViewMvc::class.java, null)
+        mViewMvc = mViewMvcFactory.newInstance(MoviesListViewMvc::class.java, null)
         setContentView(mViewMvc.view)
-
-        mUseCase = getCompositionRoot().getMoviesUseCase()
-
-        mDialogsManager =
-            getCompositionRoot().getDialogsManager()
     }
 
 
