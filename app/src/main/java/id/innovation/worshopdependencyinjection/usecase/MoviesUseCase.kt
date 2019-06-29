@@ -9,14 +9,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class MoviesUseCase(retrofit: Retrofit) : BaseObservable<MoviesUseCase.Listener>() {
+class MoviesUseCase(private val mMoviesApi: MoviesApi) : BaseObservable<MoviesUseCase.Listener>() {
 
     interface Listener {
         fun onFetchOfMoviesSucceeded(questions: List<MovieDtoBean>)
         fun onFetchOfMoviesFailed()
     }
 
-    private val mMoviesApi: MoviesApi = retrofit.create(MoviesApi::class.java)
 
     public fun fetchMovies() {
         mDisposable.add(mMoviesApi

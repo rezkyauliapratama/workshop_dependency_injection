@@ -1,6 +1,5 @@
 package id.innovation.worshopdependencyinjection.screens.movieslist
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +20,9 @@ class MainActivity : AppCompatActivity(), MoviesUseCase.Listener {
         mViewMvc = MoviesListViewMvcImpl(LayoutInflater.from(this), null)
         setContentView((mViewMvc as MoviesListViewMvcImpl).view)
 
-        val retrofit = (application as App).getRetrofit()
-        mUseCase = MoviesUseCase(retrofit)
+        val moviesApi = (application as App).getApi()
+
+        mUseCase = MoviesUseCase(moviesApi)
     }
 
 
