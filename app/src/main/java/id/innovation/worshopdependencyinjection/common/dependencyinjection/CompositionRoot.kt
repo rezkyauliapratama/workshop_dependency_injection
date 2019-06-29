@@ -2,6 +2,7 @@ package id.innovation.worshopdependencyinjection.common.dependencyinjection
 
 import id.innovation.worshopdependencyinjection.BuildConfig
 import id.innovation.worshopdependencyinjection.networking.MoviesApi
+import id.innovation.worshopdependencyinjection.screens.common.dialog.DialogsManagerFactory
 import id.innovation.worshopdependencyinjection.usecase.MoviesUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,5 +47,9 @@ class CompositionRoot  {
 
     fun getMoviesUseCase(): MoviesUseCase {
         return MoviesUseCase(getApi())
+    }
+
+    fun getDialogsManagerFactory(): DialogsManagerFactory {
+        return DialogsManagerFactory()
     }
 }
