@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class CompositionRoot  {
-    var mRetrofit: Retrofit? = null
-    var mMoviesApi: MoviesApi? = null
+    private var mRetrofit: Retrofit? = null
+    private var mMoviesApi: MoviesApi? = null
 
     fun getRetrofit(): Retrofit {
         if (mRetrofit == null) {
@@ -45,11 +45,4 @@ class CompositionRoot  {
         return mMoviesApi!!
     }
 
-    fun getMoviesUseCase(): MoviesUseCase {
-        return MoviesUseCase(getApi())
-    }
-
-    fun getDialogsManagerFactory(): DialogsManagerFactory {
-        return DialogsManagerFactory()
-    }
 }

@@ -25,7 +25,7 @@ class MainActivity : BaseActivity(), MoviesUseCase.Listener {
         mUseCase = getCompositionRoot().getMoviesUseCase()
 
         mDialogsManager =
-            getCompositionRoot().getDialogsManagerFactory().newDialogsManager(fragmentManager = supportFragmentManager)
+            getCompositionRoot().getDialogsManager()
     }
 
 
