@@ -1,5 +1,6 @@
 package id.innovation.worshopdependencyinjection.screens.common.base
 
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import id.innovation.worshopdependencyinjection.App
 import id.innovation.worshopdependencyinjection.common.dependencyinjection.CompositionRoot
@@ -13,7 +14,8 @@ abstract class BaseActivity: AppCompatActivity() {
         if (!::mPresentationCompositionRoot.isInitialized){
             mPresentationCompositionRoot = PresentationCompositionRoot(
                 getAppCompositionRoot(),
-                supportFragmentManager
+                supportFragmentManager,
+                LayoutInflater.from(this)
             )
         }
         return mPresentationCompositionRoot

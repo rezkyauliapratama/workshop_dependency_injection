@@ -19,8 +19,8 @@ class MainActivity : BaseActivity(), MoviesUseCase.Listener {
         super.onCreate(savedInstanceState)
 
         //right now, Activity doesn't know about the view , all related to view already handle by ViewMvc
-        mViewMvc = MoviesListViewMvcImpl(LayoutInflater.from(this), null)
-        setContentView((mViewMvc as MoviesListViewMvcImpl).view)
+        mViewMvc = getCompositionRoot().getViewMvcFactory().newInstance(MoviesListViewMvc::class.java, null)
+        setContentView(mViewMvc.view)
 
         mUseCase = getCompositionRoot().getMoviesUseCase()
 
