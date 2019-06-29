@@ -1,4 +1,4 @@
-package id.innovation.worshopdependencyinjection.screens.common
+package id.innovation.worshopdependencyinjection.screens.common.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog

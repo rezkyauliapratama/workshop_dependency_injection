@@ -3,14 +3,17 @@ package id.innovation.worshopdependencyinjection.screens.movieslist
 import android.os.Bundle
 import android.view.LayoutInflater
 import id.innovation.worshopdependencyinjection.networking.MovieDtoBean
-import id.innovation.worshopdependencyinjection.screens.common.ServerErrorDialogFragment
 import id.innovation.worshopdependencyinjection.screens.common.base.BaseActivity
+import id.innovation.worshopdependencyinjection.screens.common.dialog.DialogsManager
+import id.innovation.worshopdependencyinjection.screens.common.dialog.ServerErrorDialogFragment
 import id.innovation.worshopdependencyinjection.usecase.MoviesUseCase
 
 class MainActivity : BaseActivity(), MoviesUseCase.Listener {
 
     lateinit var mViewMvc: MoviesListViewMvc
     lateinit var mUseCase: MoviesUseCase
+
+    lateinit var mDialogsManager: DialogsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,9 @@ class MainActivity : BaseActivity(), MoviesUseCase.Listener {
         setContentView((mViewMvc as MoviesListViewMvcImpl).view)
 
         mUseCase = getCompositionRoot().getMoviesUseCase()
+
+        mDialogsManager =
+            getCompositionRoot().getDialogsManagerFactory().newDialogsManager(fragmentManager = supportFragmentManager)
     }
 
 
@@ -42,9 +48,6 @@ class MainActivity : BaseActivity(), MoviesUseCase.Listener {
     }
 
     override fun onFetchOfMoviesFailed() {
-        val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction()
-            .add(ServerErrorDialogFragment.newInstance(), null)
-            .commitAllowingStateLoss()
+        mDialogsManager.showRetainedDialogWithId(ServerErrorDialogFragment.newInstance(), "")
     }
 }
