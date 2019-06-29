@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "id.innovation.worshopdependencyinjection"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "environment"
+
+    productFlavors {
+
+        development {
+            dimension "environment"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "skeleton(DEV)"
+            buildConfigField 'String', 'API_KEY', '"b77a9c9af1b4434dcbbacdde72879e7c"'
+            buildConfigField 'String', 'API_BASE_URL', '"http://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'IMAGE_BASE_URL', '"https://image.tmdb.org/t/p/w500"'
+        }
+
+    }
+
+}
+
+dependencies {
+    //android support
+    implementation "com.google.code.findbugs:jsr305:${versions.findbugs}"
+    implementation "androidx.core:core-ktx:${versions.kotlinCore}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifeCycle}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "com.google.android.material:material:${versions.materialComponent}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.legacySupport}"
+
+    //reactive
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}"
+    implementation "com.jakewharton.rxbinding2:rxbinding:${versions.rxbinding}"
+
+    //dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt  "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    //gson
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLogging}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:${versions.glide}"
+    kapt "com.github.bumptech.glide:compiler:${versions.glide}"
+
+    //test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_size_xxs">8sp</dimen>
+    <dimen name="text_size_xs">10sp</dimen>
+    <dimen name="text_size_s">12sp</dimen>
+    <dimen name="text_size_m">14sp</dimen>
+    <dimen name="text_size_l">16sp</dimen>
+    <dimen name="text_size_ll">17sp</dimen>
+    <dimen name="text_size_xl">18sp</dimen>
+    <dimen name="text_size_xxl">20sp</dimen>
+    <dimen name="text_size_xxxl">24sp</dimen>
+    <dimen name="text_size_xxx">30sp</dimen>
+    <dimen name="text_size_xxxxl">40sp</dimen>
+    <dimen name="text_size_jumbo">50sp</dimen>
+
+    <dimen name="space_0dp">0dp</dimen>
+    <dimen name="space_1dp">1dp</dimen>
+    <dimen name="space_xxs">2dp</dimen>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_s">6dp</dimen>
+    <dimen name="space_s_7">7dp</dimen>
+    <dimen name="space_xxm">8dp</dimen>
+    <dimen name="space_xm">10dp</dimen>
+    <dimen name="space_m">12dp</dimen>
+    <dimen name="space_l">14dp</dimen>
+    <dimen name="space_xl">16dp</dimen>
+    <dimen name="space_xl_17">17dp</dimen>
+    <dimen name="space_xxl">18dp</dimen>
+    <dimen name="space_xxxl">20dp</dimen>
+    <dimen name="space_22">22dp</dimen>
+    <dimen name="space_jumbo">24dp</dimen>
+    <dimen name="space_x_jumbo">32dp</dimen>
+    <dimen name="space_xx_jumbo">36dp</dimen>
+    <dimen name="space_xxxl_jumbo">40dp</dimen>
+    <dimen name="medium_height_iv">180dp</dimen>
+
+    <dimen name="space_45dp">45dp</dimen>
+    <dimen name="space_48dp">48dp</dimen>
+    <dimen name="space_50dp">50dp</dimen>
+    <dimen name="space_56dp">56dp</dimen>
+    <dimen name="space_70dp">70dp</dimen>
+    <dimen name="space_80dp">80dp</dimen>
+
+    <dimen name="border_width">1dp</dimen>
+    <dimen name="button_radius">4dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <item name="space_line_decoration" format="float" type="dimen">1.0</item>
+
+    <dimen name="card_radius">8dp</dimen>
+
+
+</resources>

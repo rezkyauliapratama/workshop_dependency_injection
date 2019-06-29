@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_xs"
+        app:cardElevation="@dimen/space_xs"
+        app:cardCornerRadius="@dimen/space_xs"
+        android:background="@color/cardview_light_background"
+>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+    >
+
+        <ImageView
+                android:id="@+id/ivPoster"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medium_height_iv"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/image_of_poster"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <FrameLayout
+                android:id="@+id/backgroundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medium_height_iv"
+                app:layout_constraintTop_toTopOf="@id/ivPoster"
+                app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+                android:background="@drawable/gradients_vertical_transparent_black"
+        />
+
+        <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Movie's title"
+                android:textColor="#ffff"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tvScore"
+                app:layout_constraintEnd_toEndOf="@+id/ivPoster"
+                app:layout_constraintStart_toStartOf="@+id/ivPoster"
+                android:layout_marginStart="@dimen/space_xxm"
+                android:layout_marginEnd="@dimen/space_xxm"
+                android:layout_marginBottom="@dimen/space_s"
+        />
+
+        <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="9.0"
+                android:textColor="#ffff"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintTop_toTopOf="@+id/ivPoster"
+                android:id="@+id/tvScore"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
