@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), MoviesUseCase.Listener {
         mViewMvc = MoviesListViewMvcImpl(LayoutInflater.from(this), null)
         setContentView((mViewMvc as MoviesListViewMvcImpl).view)
 
-        mUseCase = (application as App).getMoviesUseCase()
+        mUseCase = (application as App).getCompositionRoot().getMoviesUseCase()
     }
 
 
